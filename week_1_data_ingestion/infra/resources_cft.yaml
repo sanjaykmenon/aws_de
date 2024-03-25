@@ -1,3 +1,27 @@
 #resources to be added
 # 1 - s3 bucket  - incoming and outgoing
 # 2 - lambda for processing
+AWSTemplateFormationVersion: '2010-09-09'
+Description: A CFN template to create an incoming data s3 bucket and outgoing processed S3 bucket
+
+Resources:
+  IncomingBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: incoming-data-bucket
+
+  OutgoingBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: outgoing-data-bucket
+
+Outputs:
+  IncomingBucketName:
+    Description: "Landing Bucket for NYC Taxi Trip Data"
+    Value: !Ref IncomingBucket
+  
+  OutgoingBucketName:
+    Description: "Processed Parquet Taxi Trip Data Bucket"
+    Value: OutgoingBucket
+
+    
