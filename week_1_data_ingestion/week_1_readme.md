@@ -24,3 +24,11 @@ Homework Questions:
 Scenario:
 
  - A CSV file will be uploaded to an S3 bucket everyday. When the file is dropped, a Lambda function is triggered that converts the CSV file to Parquet format and stores it in another S3 bucket.
+
+ Infrastructure:
+  - Source S3 bucket where the CSV file is uploaded
+  - Destination S3 bucket where the Parquet file is stored
+  - Lambda function to convert the CSV file to Parquet format
+  - EventBridge rule to trigger the Lambda function when a new file is uploaded to the source bucket
+  - IAM role for the Lambda function to access the source and destination buckets
+  
