@@ -1,24 +1,24 @@
-AWSTemplateFormationVersion: '2010-09-09'
+---
+
+AWSTemplateFormatVersion: "2010-09-09"
 Description: A CFN template to create an incoming data s3 bucket and outgoing processed S3 bucket
 
 Resources:
   IncomingBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: incoming-data-bucket
+      BucketName: !Sub ${AWS::StackName}-incoming-data-bucket-${AWS::Region}
 
   OutgoingBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: outgoing-data-bucket
+      BucketName: !Sub ${AWS::StackName}-outgoing-data-bucket-${AWS::Region}
 
 Outputs:
   IncomingBucketName:
     Description: "Landing Bucket for NYC Taxi Trip Data"
     Value: !Ref IncomingBucket
-  
+
   OutgoingBucketName:
     Description: "Processed Parquet Taxi Trip Data Bucket"
-    Value: OutgoingBucket
-
-    
+    Value: !Ref OutgoingBucket

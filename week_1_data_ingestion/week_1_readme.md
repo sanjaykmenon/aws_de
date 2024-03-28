@@ -29,6 +29,8 @@ Scenario:
   - Source S3 bucket where the CSV file is uploaded
   - Destination S3 bucket where the Parquet file is stored
   - Lambda function to convert the CSV file to Parquet format
-  - EventBridge rule to trigger the Lambda function when a new file is uploaded to the source bucket
+  - S3 Event trigger for Source S3 Bucket
+  - SQS for Lambda Trigger (input to SQS will be S3 Event)
   - IAM role for the Lambda function to access the source and destination buckets
-  
+
+  AWS Cloudformation CLI Command for Stack:  aws cloudformation create-stack --stack-name ingest-stack --template-body file://resources_cft.yaml
