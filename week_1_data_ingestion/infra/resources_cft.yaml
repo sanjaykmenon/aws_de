@@ -16,7 +16,7 @@ Resources:
   
   #SQS
   #S3 event trigger
-  # lambda
+  #lambda
 
 Outputs:
   IncomingBucketName:
