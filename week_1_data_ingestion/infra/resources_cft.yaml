@@ -13,6 +13,10 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: !Sub ${AWS::StackName}-outgoing-data-bucket-${AWS::Region}
+  
+  #SQS
+  #S3 event trigger
+  # lambda
 
 Outputs:
   IncomingBucketName:

@@ -26,8 +26,8 @@ Scenario:
  - A CSV file will be uploaded to an S3 bucket everyday. When the file is dropped, a Lambda function is triggered that converts the CSV file to Parquet format and stores it in another S3 bucket.
 
  Infrastructure:
-  - Source S3 bucket where the CSV file is uploaded
-  - Destination S3 bucket where the Parquet file is stored
+  - ~~Source S3 bucket where the CSV file is uploaded~~
+  - ~~Destination S3 bucket where the Parquet file is stored~~
   - Lambda function to convert the CSV file to Parquet format
   - S3 Event trigger for Source S3 Bucket
   - SQS for Lambda Trigger (input to SQS will be S3 Event)
