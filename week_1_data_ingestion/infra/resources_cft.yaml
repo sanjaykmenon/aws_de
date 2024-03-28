@@ -1,6 +1,3 @@
-#resources to be added
-# 1 - s3 bucket  - incoming and outgoing
-# 2 - lambda for processing
 AWSTemplateFormationVersion: '2010-09-09'
 Description: A CFN template to create an incoming data s3 bucket and outgoing processed S3 bucket
 
