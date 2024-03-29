@@ -33,4 +33,7 @@ Scenario:
   - SQS for Lambda Trigger (input to SQS will be S3 Event)
   - IAM role for the Lambda function to access the source and destination buckets
 
-  AWS Cloudformation CLI Command for Stack:  aws cloudformation create-stack --stack-name ingest-stack --template-body file://resources_cft.yaml
+  AWS Cloudformation CLI Command for Create Stack:  aws cloudformation create-stack --stack-name ingest-stack --template-body file://resources_cft.yaml
+
+    AWS Cloudformation CLI Command for Update Stack:  aws cloudformation update-stack --stack-name ingest-stack --template-body file://resources_cft.yaml
+

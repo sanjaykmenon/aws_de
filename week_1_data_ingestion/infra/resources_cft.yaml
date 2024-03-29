@@ -3,6 +3,21 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: A CFN template to create an incoming data s3 bucket and outgoing processed S3 bucket
 
+Parameters:
+  DelaySeconds:
+    Description: Time delay for delivery of messages in queue.
+    Type: Number
+    Default: '5'
+  MaximumMessageSize:
+    Description: Size of message in queue in bytes
+    Type: Number
+    Default: '262144' #262KB
+  MessageRetentionPeriod:
+    Description: Number of seconds the message is retained in the queue
+    Type: Number
+    Default: '345600'
+
+
 Resources:
   IncomingBucket:
     Type: AWS::S3::Bucket
@@ -13,8 +28,17 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: !Sub ${AWS::StackName}-outgoing-data-bucket-${AWS::Region}
-  
-  #SQS
+
+  IncomingFileSQS:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: "IncomingFileSQS"
+      DelaySeconds:
+        Ref: DelaySeconds
+      MaximumMessageSize:
+        Ref: MaximumMessageSize
+      MessageRetentionPeriod: 
+        Ref: MessageRetentionPeriod
   #S3 event trigger
   #lambda
 
@@ -26,3 +50,20 @@ Outputs:
   OutgoingBucketName:
     Description: "Processed Parquet Taxi Trip Data Bucket"
     Value: !Ref OutgoingBucket
+  
+  QueueURL:
+    Description: URL of IncomingFileSQS
+    Value:
+      Ref: IncomingFileSQS
+  QueueARN:
+    Description: ARN of IncomingFileSQS
+    Value:
+      Fn::GetAtt:
+      - IncomingFileSQS
+      - Arn
+  QueueName:
+    Description: Name of IncomingFileSQS
+    Value:
+      Fn::GetAtt:
+      - IncomingFileSQS
+      - QueueName
